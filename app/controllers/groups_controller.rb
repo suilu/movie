@@ -8,7 +8,11 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])  
+    @group = Group.find(params[:id])
+  end
+
+  def edit
+    @group = Group.find(params[:id])    
   end
 
   def create
