@@ -11,11 +11,9 @@
       <% end %>
     </span>
 
-    <% if current_user && current_user.is_member_of?(@group) %>
+  
     <%= link_to("发布评论", new_group_post_path(@group), class: "btn btn-default pull-right")%>
-    <% else %>
-      <%= link_to("发布评论", group_path(@group), class: "btn btn-default pull-right")%>
-    <% end %>
+
 
     <% if current_user && current_user == @group.user %>
       <%= link_to("编辑", edit_group_path(@group), class: "btn btn-primary pull-right")%>

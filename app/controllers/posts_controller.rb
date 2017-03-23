@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   before_action :favorite_and_comment,  :only => [:new, :create]
 
   def new
-
     @group = Group.find(params[:group_id])
     @post = Post.new
   end
@@ -25,10 +24,9 @@ class PostsController < ApplicationController
   private
 
   def favorite_and_comment
-
     @group = Group.find(params[:group_id])
     if  !current_user.is_member_of?(@group)
-      redirect_to root_path, alert: "You have no permission."
+      redirect_to group_path(@group), alert: "You have no favorate,please favorate first."
     end
   end
 
