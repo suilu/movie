@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create]
+  before_action :authenticate_user!, :only => [:new, :create]
   before_action :favorite_and_comment,  :only => [:new, :create]
 
   def new
@@ -26,7 +26,8 @@ class PostsController < ApplicationController
   def favorite_and_comment
     @group = Group.find(params[:group_id])
     if  !current_user.is_member_of?(@group)
-      redirect_to group_path(@group), alert: "You have no favorate,please favorate first."
+      redirect_to group_path(@group)
+      flash[:warning] = "电影收藏才可以评论哦，赶快添加一部吧！"
     end
   end
 
